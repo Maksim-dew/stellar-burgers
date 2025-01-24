@@ -30,7 +30,7 @@ const App = () => {
   const navigation = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation() as Location & { state?: LocationState };
-  // const background = location.state?.background;
+  const background = location.state?.background;
 
   useEffect(() => {
     dispatch(fetchIngredients());
@@ -40,7 +40,7 @@ const App = () => {
   return (
     <div className={styles.app}>
       <AppHeader />
-      <Routes location={location}>
+      <Routes location={background || location}>
         <Route path='/' element={<ConstructorPage />} />
         <Route path='/feed' element={<Feed />} />
         <Route
@@ -104,7 +104,7 @@ const App = () => {
         <Route path='*' element={<NotFound404 />} />
       </Routes>
 
-      {
+      {background && (
         <Routes>
           <Route
             path='/feed/:number'
@@ -131,7 +131,7 @@ const App = () => {
             }
           />
         </Routes>
-      }
+      )}
     </div>
   );
 };
