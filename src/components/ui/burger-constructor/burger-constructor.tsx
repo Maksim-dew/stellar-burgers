@@ -18,25 +18,27 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
   onOrderClick,
   closeOrderModal
 }) => (
-  <section className={styles.burger_constructor}>
+  <section className={styles.burger_constructor} data-cy="constructor">
     {constructorItems.bun ? (
-      <div className={`${styles.element} mb-4 mr-4`}>
+      <div className={`${styles.element} mb-4 mr-4`} data-cy="bun_1_constructor">
         <ConstructorElement
           type='top'
           isLocked
           text={`${constructorItems.bun.name} (верх)`}
           price={constructorItems.bun.price}
           thumbnail={constructorItems.bun.image}
+          data-cy="bun_1_constructor"
         />
       </div>
     ) : (
       <div
         className={`${styles.noBuns} ${styles.noBunsTop} ml-8 mb-4 mr-5 text text_type_main-default`}
+        data-cy="bun_1_constructor"
       >
         Выберите булки
       </div>
     )}
-    <ul className={styles.elements}>
+    <ul className={styles.elements} data-cy="ingredient_constructor">
       {constructorItems.ingredients.length > 0 ? (
         constructorItems.ingredients.map(
           (item: TConstructorIngredient, index: number) => (
@@ -57,18 +59,20 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
       )}
     </ul>
     {constructorItems.bun ? (
-      <div className={`${styles.element} mt-4 mr-4`}>
+      <div className={`${styles.element} mt-4 mr-4`} data-cy="bun_2_constructor"> 
         <ConstructorElement
           type='bottom'
           isLocked
           text={`${constructorItems.bun.name} (низ)`}
           price={constructorItems.bun.price}
           thumbnail={constructorItems.bun.image}
+          data-cy="bun_2_constructor"
         />
       </div>
     ) : (
       <div
         className={`${styles.noBuns} ${styles.noBunsBottom} ml-8 mb-4 mr-5 text text_type_main-default`}
+        data-cy="bun_2_constructor"
       >
         Выберите булки
       </div>
@@ -84,6 +88,7 @@ export const BurgerConstructorUI: FC<BurgerConstructorUIProps> = ({
         size='large'
         children='Оформить заказ'
         onClick={onOrderClick}
+        data-cy="order_button"
       />
     </div>
 
