@@ -31,7 +31,11 @@ export const BurgerConstructor: FC = () => {
   const dispatch = useDispatch();
 
   const addedIngredients = useSelector(selectAddedIngredients);
+  console.log('Added Ingredients:', addedIngredients);
+
   const addedBunDetails = useSelector(selectAddedBunDetails);
+  console.log('Added Bun Details:', addedBunDetails);
+
   const user = useSelector(selectUserData);
 
   const constructorItems: TconstructorItems = {
