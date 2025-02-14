@@ -5,7 +5,10 @@ import { TIngredient } from '@utils-types';
 import { useDispatch, useSelector } from '../../services/store';
 import { useParams } from 'react-router-dom';
 import { selectIngredients } from '../../services/slices/ingredientsSlice';
-import { selectOrder, gerOrderByNumber } from '../../services/slices/orderSlice';
+import {
+  selectOrder,
+  gerOrderByNumber
+} from '../../services/slices/orderSlice';
 
 export const OrderInfo: FC = () => {
   const dispatch = useDispatch();
