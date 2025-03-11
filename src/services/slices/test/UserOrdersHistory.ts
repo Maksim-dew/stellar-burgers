@@ -1,11 +1,11 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getOrdersApi, getOrderByNumberApi } from '../../../utils/burger-api';
+import { getOrdersApi } from '../../../utils/burger-api';
 import { TOrder } from '../../../utils/types';
 
 export type TStateOrdersHistory = {
   orders: TOrder[];
   loading: boolean;
-  error: null | string | undefined;
+  error: string | null | undefined;
 };
 
 const initialState: TStateOrdersHistory = {
@@ -14,10 +14,9 @@ const initialState: TStateOrdersHistory = {
   error: null
 };
 
-export const ordersHistory = createAsyncThunk(
-  'user/orderHistory',
-  getOrdersApi
-);
+export const ordersHistory = createAsyncThunk('user/orderHistory', async () => {
+  return await getOrdersApi();
+});
 
 export const userOrdersHistorySlice = createSlice({
   name: 'ordershistory',
@@ -26,16 +25,17 @@ export const userOrdersHistorySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(ordersHistory.pending, (state) => {
-        (state.loading = true), (state.error = null);
+        state.loading = true;
+        state.error = null;
       })
       .addCase(ordersHistory.fulfilled, (state, action) => {
-        (state.orders = action.payload),
-          (state.loading = false),
-          (state.error = null);
+        state.orders = action.payload;
+        state.loading = false;
+        state.error = null;
       })
       .addCase(ordersHistory.rejected, (state, action) => {
-        (state.error = action.error.message || 'Error orders history'),
-          (state.loading = false);
+        state.error = action.error.message ?? 'История заказов с ошибками';
+        state.loading = false;
       });
   },
   selectors: {
@@ -47,8 +47,6 @@ export const userOrdersHistorySlice = createSlice({
 
 export default userOrdersHistorySlice;
 
-export const {
-  getUserOrdersHistory,
-  getUserOrdersHistoryError,
-  getUserOrdersLoading
-} = userOrdersHistorySlice.selectors;
+export const { getUserOrdersHistory, getUserOrdersHistoryError, getUserOrdersLoading } =
+  userOrdersHistorySlice.selectors;
+export const { actions } = userOrdersHistorySlice;

@@ -14,8 +14,8 @@ export const ModalUI: FC<TModalUIProps> = memo(
           <h3 className={`${styles.title} text text_type_main-large`}>
             {title}
           </h3>
-          <button className={styles.button} type='button' data-cy="close_icon">
-            <CloseIcon type='primary' onClick={onClose} data-cy="close_icon"/>
+          <button className={styles.button} type='button' data-cy="closeIcon">
+            <CloseIcon type='primary' onClick={onClose} data-cy="closeIcon"/>
           </button>
         </div>
         <div className={styles.content}>{children}</div>

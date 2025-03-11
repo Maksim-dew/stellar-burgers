@@ -1,5 +1,3 @@
-//These tests are cheking reducers and actions statuses user info slice
-
 import {
   TStateUser,
   toRegisterUser,
@@ -21,50 +19,43 @@ const initialState: TStateUser = {
 const testUser = {
   success: true,
   user: {
-    email: 'test35@mail.ru',
-    name: 'test'
+    email: 'test12312@yandex.ru',
+    name: 'tdfdf123@yandex.ru'
   },
   accessToken: 'test',
   refreshToken: 'test'
 };
 
 const testLogIn = {
-  email: 'test35@mail.ru',
-  password: 'password'
+  email: 'tdfdf123@yandex.ru',
+  password: 'tdfdf123@yandex.ru'
 };
 
 const testRegisterUser = {
-  email: 'test35@mail.ru',
+  email: 'yandex35w@mail.ru',
   name: 'test',
-  password: 'password'
+  password: 'tdfdf123@yandex.ru'
 };
 
 const updatedUser = {
   success: true,
   user: {
-    email: 'test35@mail.ru',
-    name: 'test35'
+    email: 'yandex234@mail.ru',
+    name: 'test'
   }
 };
 
 describe('User state slice reducers tests', () => {
   it('should handle authChecked', () => {
-    // Задаем начальное состояние
     const previousState = {
       ...initialState,
-      isAuthChecked: false // Предполагаем, что проверка аутентификации еще не завершена
+      isAuthChecked: false 
     };
-
-    // Вызываем редьюсер с предыдущим состоянием и экшеном authChecked
     const actualState = userStateSlice.reducer(previousState, authChecked());
-
-    // Ожидаемое состояние после вызова редьюсера
     const expectedState = {
       ...previousState,
-      isAuthChecked: true // Ожидаем, что флаг isAuthChecked станет true
+      isAuthChecked: true
     };
-
-    // Сравниваем фактическое состояние с ожидаемым
     expect(actualState).toEqual(expectedState);
   });
 });

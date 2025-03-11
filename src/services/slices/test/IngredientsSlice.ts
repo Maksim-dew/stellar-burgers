@@ -3,42 +3,40 @@ import { TIngredient } from '@utils-types';
 import { getIngredientsApi } from '../../../utils/burger-api';
 
 export type TStateIngredients = {
-  ingredients: Array<TIngredient>;
+  ingredients: TIngredient[];
   loading: boolean;
-  error: null | string | undefined;
+  error: string | null | undefined;
 };
 
-const initialState: TStateIngredients = {
+const defaultState: TStateIngredients = {
   ingredients: [],
   loading: false,
   error: null
 };
 
 export const getIngredients = createAsyncThunk(
-  'ingredients/getIngredients',
+  'ingredients/fetchIngredients',
   async () => {
-    const response = await getIngredientsApi();
-    return response;
+    return await getIngredientsApi();
   }
 );
 
 const ingredientsSlice = createSlice({
   name: 'ingredients',
-  initialState,
+  initialState: defaultState,
   reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(getIngredients.pending, (state) => {
-        state.loading = true;
-        state.error = null;
+        Object.assign(state, { loading: true, error: null });
       })
       .addCase(getIngredients.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.error.message || 'Неизвестная ошибка';
       })
       .addCase(getIngredients.fulfilled, (state, action) => {
         state.loading = false;
-        state.ingredients = action.payload;
+        state.ingredients = [...action.payload];
       });
   },
   selectors: {

@@ -1,20 +1,15 @@
-//These tests check the request ingredients reducers
-
-import { error } from 'console';
 import ingredientsSlice, {
   getIngredients,
   TStateIngredients
 } from './IngredientsSlice';
 
-//инициализация начального состояния,  будет использоваться редьюсером перед применением экшена. Вынесли в глобальную переменную для удобства использования во всех блоках it
-const initialState: TStateIngredients = {
+const defaultState: TStateIngredients = {
   ingredients: [],
   loading: false,
   error: null
 };
 
-//глобальная переменная с тестовым ингредиентом для удобства использования во всех блоках it
-const testIngredient = [
+const sampleIngredient = [
   {
     _id: '1',
     name: 'Краторная булка N-200i',
@@ -30,65 +25,45 @@ const testIngredient = [
   }
 ];
 
-describe('Ingredients slice tests', () => {
-  it('Test should set loading to true and err to null during pending status', () => {
-    const actualState = ingredientsSlice.reducer(
-      {
-        ...initialState,
-        // намеренно добавляем тестовую ошибку в начальное состояние, чтобы проверить её сброс редьюсером
-        error: 'Test err'
-      },
-      //эмулируем вызов action pending, который моделирует начало асинхронной операции, ожидаемой редьюсером
+describe('Редуктор для тестирования ингредиентов', () => {
+  it('Следует установить загрузку в значение true и сбросить ошибку в режиме ожидания', () => {
+    const newState = ingredientsSlice.reducer(
+      { ...defaultState, error: 'Ошибка выборки' },
       getIngredients.pending('')
     );
 
-    //проверка, что что редьюсер правильно обновит состояние: загрузка началась (loading: true), ошибка сброшена (error: null), и список ингредиентов по-прежнему пуст
-    expect(actualState).toEqual({
+    expect(newState).toEqual({
       ingredients: [],
       loading: true,
       error: null
     });
   });
 
-  //проверяем, как редьюсер обрабатывает успешное завершение асинхронного запроса на получение ингредиентов
-  it('Test should set loading to false and upd ingredients', () => {
-    const actualState = ingredientsSlice.reducer(
-      {
-        ...initialState,
-        loading: true //Устанавливаем `loading` в `true`, имитируя активную загрузку данных
-      },
-      getIngredients.fulfilled(testIngredient, '')
+  it('Обновить ингредиенты и прекратить загрузку в случае успеха', () => {
+    const newState = ingredientsSlice.reducer(
+      { ...defaultState, loading: true },
+      getIngredients.fulfilled(sampleIngredient, '')
     );
 
-    expect(actualState).toEqual({
-      ingredients: testIngredient,
+    expect(newState).toEqual({
+      ingredients: sampleIngredient,
       loading: false,
       error: null
     });
   });
 
-  //тест проверяет как редьюсер обрабатывает неуспешное завершение асинхронного запроса на получение ингредиентов
-  it('Test should set loading to false and err to err message', () => {
-    //создаем тестовый объект ошибки, который будет использоваться для эмуляции неудачного запроса
-    const testErr = new Error('Test err');
+  it('Прекратить загрузку и сохранить ошибку при сбое', () => {
+    const sampleError = new Error('Ошибка выборки');
 
-    const actualState = ingredientsSlice.reducer(
-      {
-        ...initialState,
-        loading: true //Устанавливаем `loading` в `true`, имитируя активную загрузку данных
-      },
-      //эмулируем неуспешное завершение запроса с созданной ранее тестовой ошибкой
-      getIngredients.rejected(testErr, '')
+    const newState = ingredientsSlice.reducer(
+      { ...defaultState, loading: true },
+      getIngredients.rejected(sampleError, '')
     );
 
-    //Проверка ОР:
-    // - `loading` будет установлено в `false`, так как загрузка завершилась с ошибкой.
-    // - `ingredients` останется пустым массивом, так как данные не были загружены.
-    // - `error` будет содержать сообщение об ошибке, полученное из объекта ошибки.
-    expect(actualState).toEqual({
+    expect(newState).toEqual({
       ingredients: [],
       loading: false,
-      error: 'Test err'
+      error: 'Ошибка выборки'
     });
   });
 });

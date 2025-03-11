@@ -1,12 +1,8 @@
-//tests checks user order history slice reducers
-
 import {
   TStateOrdersHistory,
   ordersHistory,
   userOrdersHistorySlice
 } from './UserOrdersHistory';
-
-// Начальное состояние для тестов, вынесенное в глобальную переменную для общего доступа
 
 const initialState: TStateOrdersHistory = {
   orders: [],
@@ -14,7 +10,6 @@ const initialState: TStateOrdersHistory = {
   error: null
 };
 
-//Тестовые данные заказов для использования в тестах, в глобальной переменной для общего доступа
 const testOrders = {
   success: true,
   orders: [
@@ -66,7 +61,6 @@ const testOrders = {
 };
 
 describe('Order history tests', () => {
-  // Тест на установку флага загрузки в true и сброс ошибки при статусе pending
   it('test should set load to true and err to null during pending status', () => {
     const actualState = userOrdersHistorySlice.reducer(
       {
@@ -76,13 +70,12 @@ describe('Order history tests', () => {
       ordersHistory.pending('')
     );
     expect(actualState).toEqual({
-      orders: [], // Заказы остаются пустыми
-      error: null, // Ошибка сбрасывается
-      loading: true //загрузка происходит
+      orders: [],
+      error: null,
+      loading: true 
     });
   });
 
-  // Тест на установку флага загрузки в false и обновление данных при успешном выполнении
   it('test should set load to false and upd feed data', () => {
     const actualState = userOrdersHistorySlice.reducer(
       {
@@ -91,8 +84,6 @@ describe('Order history tests', () => {
       },
       ordersHistory.fulfilled(testOrders.orders, '')
     );
-
-    //проверяем, что  данные корректно сохраняются в состояние, а флаг загрузки (loading) сбрасывается.
     expect(actualState).toEqual({
       orders: testOrders.orders,
       error: null,
@@ -100,7 +91,6 @@ describe('Order history tests', () => {
     });
   });
 
-  // Тест на установку сообщения об ошибке и сброс флага загрузки при неудаче
   it('test should set err to err message and loading to false', () => {
     const testErr = new Error('Test err');
     const actualState = userOrdersHistorySlice.reducer(
@@ -110,8 +100,6 @@ describe('Order history tests', () => {
       },
       ordersHistory.rejected(testErr, '')
     );
-
-    // Проверяем, что ошибка корректно сохраняется в состояние, а флаг загрузки (loading) сбрасывается.
     expect(actualState).toEqual({
       orders: [],
       loading: false,

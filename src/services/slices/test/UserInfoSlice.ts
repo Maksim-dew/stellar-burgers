@@ -2,25 +2,21 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
 import { getCookie, setCookie, deleteCookie } from '../../../utils/cookie';
 import {
-  refreshToken,
-  fetchWithRefresh,
   registerUserApi,
   loginUserApi,
   getUserApi,
   updateUserApi,
   logoutApi,
-  forgotPasswordApi,
-  resetPasswordApi
 } from '../../../utils/burger-api';
 
 import { TRegisterData } from '../../../utils/burger-api';
 
 export type TStateUser = {
-  isAuthChecked: boolean; //флаг для статуса проверки токена пользователя
+  isAuthChecked: boolean;
   isAuthenticated: boolean;
-  user: TUser | null; //null, если пользователь не авторизован
-  loginUserError: null | string; // Ошибка логина, если есть
-  loginUserRequest: boolean; // Флаг для состояния запроса логина
+  user: TUser | null; 
+  loginUserError: null | string;
+  loginUserRequest: boolean;
 };
 
 const initialState: TStateUser = {
@@ -96,7 +92,7 @@ export const userStateSlice = createSlice({
       })
       .addCase(userApi.rejected, (state, action) => {
         state.loginUserError =
-          action.error.message || 'Failed to fetch user data';
+          action.error.message || 'Не удалось получить пользовательские данные';
         state.isAuthenticated = false;
         state.user = null;
         state.isAuthChecked = true;
@@ -115,7 +111,7 @@ export const userStateSlice = createSlice({
       .addCase(toRegisterUser.rejected, (state, action) => {
         state.isAuthenticated = false;
         state.loginUserError =
-          action.error.message || 'Failed to fetch register user ';
+          action.error.message || 'Не удалось найти зарегистрированного пользователя';
         state.loginUserRequest = false;
       })
       .addCase(logInUser.pending, (state) => {
@@ -131,7 +127,7 @@ export const userStateSlice = createSlice({
       .addCase(logInUser.rejected, (state, action) => {
         state.loginUserRequest = false;
         state.loginUserError =
-          action.error.message || 'Failed to fetch Log in user ';
+          action.error.message || 'Не удалось найти пользователя, вошедшего в систему';
         state.isAuthChecked = true;
       })
       .addCase(logOutUser.pending, (state) => {
@@ -149,7 +145,7 @@ export const userStateSlice = createSlice({
         state.isAuthenticated = false;
         state.loginUserRequest = false;
         state.loginUserError =
-          action.error.message || 'Failed to fetch Log Out user ';
+          action.error.message || 'Не удалось найти пользователя, вышедшего из системы';
       })
       .addCase(updateUser.pending, (state) => {
         state.isAuthenticated = true;
@@ -162,7 +158,7 @@ export const userStateSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.loginUserError =
-          action.error.message || 'Failed to fetch update user';
+          action.error.message || 'Не удалось получить обновление пользователя';
         state.loginUserRequest = false;
       });
   },

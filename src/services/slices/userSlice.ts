@@ -144,11 +144,12 @@ export const userSlice = createSlice({
         state.isAuthChecked = true;
         state.isAuthenticated = true;
       })
-      .addCase(logoutUserThunk.fulfilled, (state, action) => {
+      .addCase(logoutUserThunk.fulfilled, (state) => {
         localStorage.clear();
         deleteCookie('accessToken');
         state.data = null;
         state.isAuthenticated = false;
+        state.loginUserRequest = false;
       })
       .addCase(updateUserDataThunk.pending, (state) => {
         state.isLoading = true;
