@@ -2,39 +2,21 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { TUser } from '@utils-types';
 import { getCookie, setCookie, deleteCookie } from '../../../utils/cookie';
 import {
-<<<<<<< HEAD
-=======
-  refreshToken,
-  fetchWithRefresh,
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
   registerUserApi,
   loginUserApi,
   getUserApi,
   updateUserApi,
   logoutApi,
-<<<<<<< HEAD
-=======
-  forgotPasswordApi,
-  resetPasswordApi
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 } from '../../../utils/burger-api';
 
 import { TRegisterData } from '../../../utils/burger-api';
 
 export type TStateUser = {
-<<<<<<< HEAD
   isAuthChecked: boolean;
   isAuthenticated: boolean;
   user: TUser | null; 
   loginUserError: null | string;
   loginUserRequest: boolean;
-=======
-  isAuthChecked: boolean; //флаг для статуса проверки токена пользователя
-  isAuthenticated: boolean;
-  user: TUser | null; //null, если пользователь не авторизован
-  loginUserError: null | string; // Ошибка логина, если есть
-  loginUserRequest: boolean; // Флаг для состояния запроса логина
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 };
 
 const initialState: TStateUser = {
@@ -110,11 +92,7 @@ export const userStateSlice = createSlice({
       })
       .addCase(userApi.rejected, (state, action) => {
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message || 'Не удалось получить пользовательские данные';
-=======
-          action.error.message || 'Failed to fetch user data';
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
         state.isAuthenticated = false;
         state.user = null;
         state.isAuthChecked = true;
@@ -133,11 +111,7 @@ export const userStateSlice = createSlice({
       .addCase(toRegisterUser.rejected, (state, action) => {
         state.isAuthenticated = false;
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message || 'Не удалось найти зарегистрированного пользователя';
-=======
-          action.error.message || 'Failed to fetch register user ';
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
         state.loginUserRequest = false;
       })
       .addCase(logInUser.pending, (state) => {
@@ -153,11 +127,7 @@ export const userStateSlice = createSlice({
       .addCase(logInUser.rejected, (state, action) => {
         state.loginUserRequest = false;
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message || 'Не удалось найти пользователя, вошедшего в систему';
-=======
-          action.error.message || 'Failed to fetch Log in user ';
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
         state.isAuthChecked = true;
       })
       .addCase(logOutUser.pending, (state) => {
@@ -175,11 +145,7 @@ export const userStateSlice = createSlice({
         state.isAuthenticated = false;
         state.loginUserRequest = false;
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message || 'Не удалось найти пользователя, вышедшего из системы';
-=======
-          action.error.message || 'Failed to fetch Log Out user ';
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
       })
       .addCase(updateUser.pending, (state) => {
         state.isAuthenticated = true;
@@ -192,11 +158,7 @@ export const userStateSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message || 'Не удалось получить обновление пользователя';
-=======
-          action.error.message || 'Failed to fetch update user';
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
         state.loginUserRequest = false;
       });
   },

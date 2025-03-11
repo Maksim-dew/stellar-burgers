@@ -1,29 +1,15 @@
-<<<<<<< HEAD
-=======
-//tests checks user order history slice reducers
-
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 import {
   TStateOrdersHistory,
   ordersHistory,
   userOrdersHistorySlice
 } from './UserOrdersHistory';
 
-<<<<<<< HEAD
-=======
-// Начальное состояние для тестов, вынесенное в глобальную переменную для общего доступа
-
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 const initialState: TStateOrdersHistory = {
   orders: [],
   loading: false,
   error: null
 };
 
-<<<<<<< HEAD
-=======
-//Тестовые данные заказов для использования в тестах, в глобальной переменной для общего доступа
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 const testOrders = {
   success: true,
   orders: [
@@ -75,10 +61,6 @@ const testOrders = {
 };
 
 describe('Order history tests', () => {
-<<<<<<< HEAD
-=======
-  // Тест на установку флага загрузки в true и сброс ошибки при статусе pending
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
   it('test should set load to true and err to null during pending status', () => {
     const actualState = userOrdersHistorySlice.reducer(
       {
@@ -88,22 +70,12 @@ describe('Order history tests', () => {
       ordersHistory.pending('')
     );
     expect(actualState).toEqual({
-<<<<<<< HEAD
       orders: [],
       error: null,
       loading: true 
     });
   });
 
-=======
-      orders: [], // Заказы остаются пустыми
-      error: null, // Ошибка сбрасывается
-      loading: true //загрузка происходит
-    });
-  });
-
-  // Тест на установку флага загрузки в false и обновление данных при успешном выполнении
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
   it('test should set load to false and upd feed data', () => {
     const actualState = userOrdersHistorySlice.reducer(
       {
@@ -112,11 +84,6 @@ describe('Order history tests', () => {
       },
       ordersHistory.fulfilled(testOrders.orders, '')
     );
-<<<<<<< HEAD
-=======
-
-    //проверяем, что  данные корректно сохраняются в состояние, а флаг загрузки (loading) сбрасывается.
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     expect(actualState).toEqual({
       orders: testOrders.orders,
       error: null,
@@ -124,10 +91,6 @@ describe('Order history tests', () => {
     });
   });
 
-<<<<<<< HEAD
-=======
-  // Тест на установку сообщения об ошибке и сброс флага загрузки при неудаче
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
   it('test should set err to err message and loading to false', () => {
     const testErr = new Error('Test err');
     const actualState = userOrdersHistorySlice.reducer(
@@ -137,11 +100,6 @@ describe('Order history tests', () => {
       },
       ordersHistory.rejected(testErr, '')
     );
-<<<<<<< HEAD
-=======
-
-    // Проверяем, что ошибка корректно сохраняется в состояние, а флаг загрузки (loading) сбрасывается.
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     expect(actualState).toEqual({
       orders: [],
       loading: false,

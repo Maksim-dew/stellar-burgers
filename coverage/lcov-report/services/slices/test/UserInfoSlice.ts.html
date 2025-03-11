@@ -23,15 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-<<<<<<< HEAD
                 <span class="strong">79.08% </span>
                 <span class="quiet">Statements</span>
                 <span class='fraction'>155/196</span>
-=======
-                <span class="strong">79.5% </span>
-                <span class="quiet">Statements</span>
-                <span class='fraction'>159/200</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
             </div>
         
             
@@ -50,15 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-<<<<<<< HEAD
                 <span class="strong">79.08% </span>
                 <span class="quiet">Lines</span>
                 <span class='fraction'>155/196</span>
-=======
-                <span class="strong">79.5% </span>
-                <span class="quiet">Lines</span>
-                <span class='fraction'>159/200</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
             </div>
         
             
@@ -271,15 +259,7 @@
 <a name='L194'></a><a href='#L194'>194</a>
 <a name='L195'></a><a href='#L195'>195</a>
 <a name='L196'></a><a href='#L196'>196</a>
-<<<<<<< HEAD
 <a name='L197'></a><a href='#L197'>197</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-=======
-<a name='L197'></a><a href='#L197'>197</a>
-<a name='L198'></a><a href='#L198'>198</a>
-<a name='L199'></a><a href='#L199'>199</a>
-<a name='L200'></a><a href='#L200'>200</a>
-<a name='L201'></a><a href='#L201'>201</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -313,13 +293,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<<<<<<< HEAD
-=======
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -486,39 +459,21 @@
 <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >import { TUser } from '@utils-types';</span></span>
 import { getCookie, setCookie, deleteCookie } from '../../../utils/cookie';
 import {
-<<<<<<< HEAD
-=======
-  refreshToken,
-  fetchWithRefresh,
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
   registerUserApi,
   loginUserApi,
   getUserApi,
   updateUserApi,
   logoutApi,
-<<<<<<< HEAD
-=======
-  forgotPasswordApi,
-  resetPasswordApi
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 } from '../../../utils/burger-api';
 &nbsp;
 import { TRegisterData } from '../../../utils/burger-api';
 &nbsp;
 export type TStateUser = {
-<<<<<<< HEAD
   isAuthChecked: boolean;
   isAuthenticated: boolean;
   user: TUser | null; 
   loginUserError: null | string;
   loginUserRequest: boolean;
-=======
-  isAuthChecked: boolean; //флаг для статуса проверки токена пользователя
-  isAuthenticated: boolean;
-  user: TUser | null; //null, если пользователь не авторизован
-  loginUserError: null | string; // Ошибка логина, если есть
-  loginUserRequest: boolean; // Флаг для состояния запроса логина
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 };
 &nbsp;
 const initialState: TStateUser = {
@@ -594,11 +549,7 @@ export const userStateSlice = createSlice({
       })
       .addCase(userApi.rejected, (state, action) =&gt; {
 <span class="cstat-no" title="statement not covered" >        state.loginUserError =</span>
-<<<<<<< HEAD
 <span class="cstat-no" title="statement not covered" >          action.error.message || 'Не удалось получить пользовательские данные';</span>
-=======
-<span class="cstat-no" title="statement not covered" >          action.error.message || 'Failed to fetch user data';</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 <span class="cstat-no" title="statement not covered" >        state.isAuthenticated = false;</span>
 <span class="cstat-no" title="statement not covered" >        state.user = null;</span>
 <span class="cstat-no" title="statement not covered" >        state.isAuthChecked = true;</span>
@@ -617,11 +568,7 @@ export const userStateSlice = createSlice({
       .addCase(toRegisterUser.rejected, (state, action) =&gt; {
         state.isAuthenticated = false;
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message<span class="branch-0 cbranch-no" title="branch not covered" > || 'Не удалось найти зарегистрированного пользователя';</span>
-=======
-          action.error.message<span class="branch-0 cbranch-no" title="branch not covered" > || 'Failed to fetch register user ';</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
         state.loginUserRequest = false;
       })
       .addCase(logInUser.pending, (state) =&gt; {
@@ -637,11 +584,7 @@ export const userStateSlice = createSlice({
       .addCase(logInUser.rejected, (state, action) =&gt; {
         state.loginUserRequest = false;
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message<span class="branch-0 cbranch-no" title="branch not covered" > || 'Не удалось найти пользователя, вошедшего в систему';</span>
-=======
-          action.error.message<span class="branch-0 cbranch-no" title="branch not covered" > || 'Failed to fetch Log in user ';</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
         state.isAuthChecked = true;
       })
       .addCase(logOutUser.pending, (state) =&gt; {
@@ -659,11 +602,7 @@ export const userStateSlice = createSlice({
         state.isAuthenticated = false;
         state.loginUserRequest = false;
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message<span class="branch-0 cbranch-no" title="branch not covered" > || 'Не удалось найти пользователя, вышедшего из системы';</span>
-=======
-          action.error.message<span class="branch-0 cbranch-no" title="branch not covered" > || 'Failed to fetch Log Out user ';</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
       })
       .addCase(updateUser.pending, (state) =&gt; {
         state.isAuthenticated = true;
@@ -676,11 +615,7 @@ export const userStateSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) =&gt; {
         state.loginUserError =
-<<<<<<< HEAD
           action.error.message<span class="branch-0 cbranch-no" title="branch not covered" > || 'Не удалось получить обновление пользователя';</span>
-=======
-          action.error.message<span class="branch-0 cbranch-no" title="branch not covered" > || 'Failed to fetch update user';</span>
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
         state.loginUserRequest = false;
       });
   },
@@ -723,11 +658,7 @@ export const {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-<<<<<<< HEAD
-                at 2025-03-11T18:07:42.988Z
-=======
-                at 2025-02-12T10:06:26.533Z
->>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
+                at 2025-03-11T18:47:43.518Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
