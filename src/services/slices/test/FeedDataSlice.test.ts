@@ -1,4 +1,10 @@
+<<<<<<< HEAD
 
+=======
+//These tests check the Feed data slice reducers
+
+import { error } from 'console';
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 import {
   getFeedData,
   getOrderByNum,
@@ -6,6 +12,10 @@ import {
   feedDataSlice
 } from './FeedDataSlice';
 
+<<<<<<< HEAD
+=======
+// Начальное состояние для тестов, вынесенное в глобальную переменную для общего доступа
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 const initialState: TStateFeed = {
   orders: [],
   total: 0,
@@ -15,6 +25,10 @@ const initialState: TStateFeed = {
   modalOrder: null
 };
 
+<<<<<<< HEAD
+=======
+//Тестовые данные заказов для использования в тестах, в глобальной переменной для общего доступа
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 const testOrders = {
   success: true,
   orders: [
@@ -65,12 +79,22 @@ const testOrders = {
   totalToday: 3
 };
 
+<<<<<<< HEAD
 describe('Тесты срезов', () => {
   it('тест должен установить значение load равным true, а значение err равным null во время состояния ожидания', () => {
     const actualState = feedDataSlice.reducer(
       {
         ...initialState,
         error: "Test err"
+=======
+describe('Feed data slice tests', () => {
+  // Проверка на установку loading в true и сброс ошибки (error) при состоянии pending
+  it('test should set load to true and err to null during pending status', () => {
+    const actualState = feedDataSlice.reducer(
+      {
+        ...initialState,
+        error: 'Test err'
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
       },
       getFeedData.pending('')
     );
@@ -79,12 +103,22 @@ describe('Тесты срезов', () => {
       total: 0,
       totalToday: 0,
       error: null,
+<<<<<<< HEAD
       loading: true, 
       modalOrder: null
     });
   });
 
   it('тест должен установить значение load равным false и обновить данные подачи', () => {
+=======
+      loading: true, // Ошибка сбрасывается
+      modalOrder: null // Загрузка начинается
+    });
+  });
+
+  // Проверка на установку данных после успешной загрузки
+  it('test should set load to false and upd feed data', () => {
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     const actualState = feedDataSlice.reducer(
       {
         ...initialState,
@@ -93,6 +127,10 @@ describe('Тесты срезов', () => {
       getFeedData.fulfilled(testOrders, '')
     );
 
+<<<<<<< HEAD
+=======
+    //проверяем, что  данные корректно сохраняются в состояние, а флаг загрузки (loading) сбрасывается.
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     expect(actualState).toEqual({
       orders: testOrders.orders,
       total: testOrders.total,
@@ -103,7 +141,12 @@ describe('Тесты срезов', () => {
     });
   });
 
+<<<<<<< HEAD
   it('тест должен установить для err значение err message, а для loading - значение false', () => {
+=======
+  // Проверка на установку ошибки (error) при отклонении загрузки данных
+  it('test should set err to err message and loading to false', () => {
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     const testErr = new Error('Test err');
     const actualState = feedDataSlice.reducer(
       {
@@ -113,12 +156,17 @@ describe('Тесты срезов', () => {
       getFeedData.rejected(testErr, '')
     );
 
+<<<<<<< HEAD
+=======
+    // Проверяем, что ошибка корректно сохраняется в состояние, а флаг загрузки (loading) сбрасывается.
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     expect(actualState).toEqual({
       orders: [],
       total: 0,
       totalToday: 0,
       modalOrder: null,
       loading: false,
+<<<<<<< HEAD
       error: "Test err"
     });
   });
@@ -130,6 +178,20 @@ describe('Тесты срезов', () => {
         error: "Test err"
       },
       getOrderByNum.pending('1', 1) 
+=======
+      error: 'Test err'
+    });
+  });
+
+  // Проверка на установку loading в true при запросе заказа по номеру (pending)
+  it('test get order by number should set loading to true', () => {
+    const actualState = feedDataSlice.reducer(
+      {
+        ...initialState,
+        error: 'Test err'
+      },
+      getOrderByNum.pending('1', 1) //аргументы (номер заказа и идентификатор запроса) не используются непосредственно в тесте, но необходимы для соответствия сигнатуре запроса
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     );
     expect(actualState).toEqual({
       orders: [],
@@ -141,7 +203,12 @@ describe('Тесты срезов', () => {
     });
   });
 
+<<<<<<< HEAD
   it('при тестировании получения заказа по номеру для параметра загрузка должно быть установлено значение false', () => {
+=======
+  // Проверка на установку заказа в modalOrder и завершение загрузки (fulfilled)
+  it('test get order by number should set loading to false', () => {
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     const actualState = feedDataSlice.reducer(
       {
         ...initialState,
@@ -150,6 +217,10 @@ describe('Тесты срезов', () => {
       getOrderByNum.fulfilled(testOrders, '1', 1)
     );
 
+<<<<<<< HEAD
+=======
+    //проверяем, что modalOrder обновился, а loading завершена
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     expect(actualState).toEqual({
       orders: [],
       total: 0,
@@ -160,7 +231,12 @@ describe('Тесты срезов', () => {
     });
   });
 
+<<<<<<< HEAD
   it('тест get order by number должен установить значение loading равным false и установить значение err', () => {
+=======
+  // Проверка на установку ошибки и завершение загрузки при отказе в получении заказа (rejected)
+  it('test get order by number should set loading to false and set err', () => {
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     const testErr = new Error('Test err');
     const actualState = feedDataSlice.reducer(
       {
@@ -169,13 +245,21 @@ describe('Тесты срезов', () => {
       },
       getOrderByNum.rejected(testErr, '1', 1)
     );
+<<<<<<< HEAD
+=======
+    // Проверяем, что ошибка сохраняется, а флаг загрузки (loading) сбрасывается.
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     expect(actualState).toEqual({
       orders: [],
       total: 0,
       totalToday: 0,
       modalOrder: null,
       loading: false,
+<<<<<<< HEAD
       error: "Test err"
+=======
+      error: 'Test err'
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     });
   });
 });

@@ -1,11 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+<<<<<<< HEAD
 import { getOrdersApi } from '../../../utils/burger-api';
+=======
+import { getOrdersApi, getOrderByNumberApi } from '../../../utils/burger-api';
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 import { TOrder } from '../../../utils/types';
 
 export type TStateOrdersHistory = {
   orders: TOrder[];
   loading: boolean;
+<<<<<<< HEAD
   error: string | null | undefined;
+=======
+  error: null | string | undefined;
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 };
 
 const initialState: TStateOrdersHistory = {
@@ -14,9 +22,16 @@ const initialState: TStateOrdersHistory = {
   error: null
 };
 
+<<<<<<< HEAD
 export const ordersHistory = createAsyncThunk('user/orderHistory', async () => {
   return await getOrdersApi();
 });
+=======
+export const ordersHistory = createAsyncThunk(
+  'user/orderHistory',
+  getOrdersApi
+);
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 
 export const userOrdersHistorySlice = createSlice({
   name: 'ordershistory',
@@ -25,6 +40,7 @@ export const userOrdersHistorySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(ordersHistory.pending, (state) => {
+<<<<<<< HEAD
         state.loading = true;
         state.error = null;
       })
@@ -36,6 +52,18 @@ export const userOrdersHistorySlice = createSlice({
       .addCase(ordersHistory.rejected, (state, action) => {
         state.error = action.error.message ?? 'История заказов с ошибками';
         state.loading = false;
+=======
+        (state.loading = true), (state.error = null);
+      })
+      .addCase(ordersHistory.fulfilled, (state, action) => {
+        (state.orders = action.payload),
+          (state.loading = false),
+          (state.error = null);
+      })
+      .addCase(ordersHistory.rejected, (state, action) => {
+        (state.error = action.error.message || 'Error orders history'),
+          (state.loading = false);
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
       });
   },
   selectors: {
@@ -47,6 +75,14 @@ export const userOrdersHistorySlice = createSlice({
 
 export default userOrdersHistorySlice;
 
+<<<<<<< HEAD
 export const { getUserOrdersHistory, getUserOrdersHistoryError, getUserOrdersLoading } =
   userOrdersHistorySlice.selectors;
 export const { actions } = userOrdersHistorySlice;
+=======
+export const {
+  getUserOrdersHistory,
+  getUserOrdersHistoryError,
+  getUserOrdersLoading
+} = userOrdersHistorySlice.selectors;
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64

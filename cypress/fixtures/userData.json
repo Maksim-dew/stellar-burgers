@@ -1,7 +1,11 @@
 {
   "success": true,
   "user": {
+<<<<<<< HEAD
     "email": "tdfdf123@yandex.ru",
+=======
+    "email": "test33@mail.ru",
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     "name": "test"
   }
 }

@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+//These tests are cheking reducers and actions statuses user info slice
+
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 import {
   TStateUser,
   toRegisterUser,
@@ -19,14 +24,20 @@ const initialState: TStateUser = {
 const testUser = {
   success: true,
   user: {
+<<<<<<< HEAD
     email: 'test12312@yandex.ru',
     name: 'tdfdf123@yandex.ru'
+=======
+    email: 'test35@mail.ru',
+    name: 'test'
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
   },
   accessToken: 'test',
   refreshToken: 'test'
 };
 
 const testLogIn = {
+<<<<<<< HEAD
   email: 'tdfdf123@yandex.ru',
   password: 'tdfdf123@yandex.ru'
 };
@@ -35,18 +46,34 @@ const testRegisterUser = {
   email: 'yandex35w@mail.ru',
   name: 'test',
   password: 'tdfdf123@yandex.ru'
+=======
+  email: 'test35@mail.ru',
+  password: 'password'
+};
+
+const testRegisterUser = {
+  email: 'test35@mail.ru',
+  name: 'test',
+  password: 'password'
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
 };
 
 const updatedUser = {
   success: true,
   user: {
+<<<<<<< HEAD
     email: 'yandex234@mail.ru',
     name: 'test'
+=======
+    email: 'test35@mail.ru',
+    name: 'test35'
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
   }
 };
 
 describe('User state slice reducers tests', () => {
   it('should handle authChecked', () => {
+<<<<<<< HEAD
     const previousState = {
       ...initialState,
       isAuthChecked: false 
@@ -56,6 +83,24 @@ describe('User state slice reducers tests', () => {
       ...previousState,
       isAuthChecked: true
     };
+=======
+    // Задаем начальное состояние
+    const previousState = {
+      ...initialState,
+      isAuthChecked: false // Предполагаем, что проверка аутентификации еще не завершена
+    };
+
+    // Вызываем редьюсер с предыдущим состоянием и экшеном authChecked
+    const actualState = userStateSlice.reducer(previousState, authChecked());
+
+    // Ожидаемое состояние после вызова редьюсера
+    const expectedState = {
+      ...previousState,
+      isAuthChecked: true // Ожидаем, что флаг isAuthChecked станет true
+    };
+
+    // Сравниваем фактическое состояние с ожидаемым
+>>>>>>> b1550ba21a3a343648788eac2ed2e78d96bbba64
     expect(actualState).toEqual(expectedState);
   });
 });
