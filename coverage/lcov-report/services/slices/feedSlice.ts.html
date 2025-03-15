@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86% </span>
+                <span class="strong">92% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>43/50</span>
+                <span class='fraction'>46/50</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>18/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">22.22% </span>
+                <span class="strong">91.66% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/9</span>
+                <span class='fraction'>11/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86% </span>
+                <span class="strong">92% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>43/50</span>
+                <span class='fraction'>46/50</span>
             </div>
         
             
@@ -131,32 +131,32 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -164,7 +164,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { TOrder } from '@utils-types';
-<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >import { getFeedsApi } from '../../utils/burger-api';</span></span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >import { getFeedsApi } from '../../utils/burger-api';</span></span></span>
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 &nbsp;
 type TInitialState = {
@@ -181,10 +181,10 @@ const initialState: TInitialState = {
 &nbsp;
 export const getFeedThunk = createAsyncThunk(
   'feed/getAll',
-<span class="fstat-no" title="function not covered" >  async (_, { dispatch }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    dispatch(clearFeed());</span>
-<span class="cstat-no" title="statement not covered" >    const data = await getFeedsApi();</span>
-<span class="cstat-no" title="statement not covered" >    return data;</span>
+  async (_, { dispatch }) =&gt; {
+    dispatch(clearFeed());
+    const data = await getFeedsApi();
+    return data<span class="branch-0 cbranch-no" title="branch not covered" >;</span>
   }
 );
 &nbsp;
@@ -192,13 +192,13 @@ export const feedSlice = createSlice({
   name: 'feed',
   initialState,
   reducers: {
-    clearFeed: <span class="fstat-no" title="function not covered" >() =&gt; initialState</span>
+    clearFeed: () =&gt; initialState
   },
   selectors: {
-    selectFeed: <span class="fstat-no" title="function not covered" >(state) =&gt; state.orders,</span>
-    selectTotal: <span class="fstat-no" title="function not covered" >(state) =&gt; state.total,</span>
-    selectTotalToday: <span class="fstat-no" title="function not covered" >(state) =&gt; state.totalToday,</span>
-    selectData: <span class="fstat-no" title="function not covered" >(state) =&gt; state</span>
+    selectFeed: (state) =&gt; state.orders,
+    selectTotal: (state) =&gt; state.total,
+    selectTotalToday: (state) =&gt; state.totalToday,
+    selectData: (state) =&gt; state
   },
   extraReducers: (builder) =&gt; {
     builder.addCase(getFeedThunk.fulfilled, (state, action) =&gt; {
@@ -220,7 +220,7 @@ export const { clearFeed } = feedSlice.actions;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-03-11T18:47:43.518Z
+                at 2025-03-15T15:33:00.289Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

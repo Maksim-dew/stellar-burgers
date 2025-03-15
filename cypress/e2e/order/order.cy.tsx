@@ -29,12 +29,15 @@ describe('Order test', function () {
     };
 
     const checkConstructorEmpty = () => {
-        cy.get('[data-cy=bun_1_constructor]').should('not.contain', 'Ингридиент_1');
-        cy.get('[data-cy=ingredient_constructor]').should('not.contain', 'Ингридиент_4');
-        cy.get('[data-cy=ingredient_constructor]').should('not.contain', 'Ингридиент_2');
+        cy.get('[data-cy=bun_1_constructor]').should('not.contain', 'Ингредиент_1');
+        cy.get('[data-cy=ingredient_constructor]').should('not.contain', 'Ингредиент_4');
+        cy.get('[data-cy=ingredient_constructor]').should('not.contain', 'Ингредиент_2');
     };
 
     it('Создать тест для успешного выполнения заказа', function() {
+        cy.get('[data-cy=ingredient_constructor]').should('not.contain', 'Ингредиент_1');
+        cy.get('[data-cy=ingredient_constructor]').should('not.contain', 'Ингредиент_2');
+
         addIngredientToConstructor('Ингредиент_1', '[data-cy=bun_ingredients]');
         addIngredientToConstructor('Ингредиент_2', '[data-cy=main_ingredients]');
 

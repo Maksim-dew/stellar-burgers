@@ -12,7 +12,7 @@ describe('Modal window test', function() {
     }
 
     const closeModal = () => {
-        cy.get('[data-cy=overlay]').should('exist');
+        cy.get('[data-cy=modal]').should('exist');
         cy.get('[data-cy=closeIcon]').click({force: true});
     }
 
@@ -23,6 +23,8 @@ describe('Modal window test', function() {
     it('Откроется окно выбора ингредиентов', function () {
         cy.get('[data-cy=modal]').should('not.exist');
         openModal();
+        cy.get('[data-cy=modal]').should('exist');
+        cy.get('[data-cy=content]').contains('Ингредиент_1').should('exist');
     })
 
     it('Окно выбора ингредиентов закрыто', function() {

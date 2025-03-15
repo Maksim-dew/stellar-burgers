@@ -13,7 +13,10 @@ describe('Constructor page test', function () {
         cy.get(container).contains(ingredient).should('exist');
     }
 
-    const addIngredient = (ingredient: string, button: string) => {
+    const addIngredient = (ingredient: string, button: string, num?: number) => {
+        if(num) {
+            cy.get(button).eq(num).contains('Добавить').click({ force: true });
+        }
         cy.get(button).contains('Добавить').click({ force: true });
     }
 
@@ -31,7 +34,10 @@ describe('Constructor page test', function () {
         checkIngredientNotExist('Ингредиент_2', '[data-cy=ingredient_constructor]');
         checkIngredientNotExist('Ингредиент_4', '[data-cy=ingredient_constructor]');
         
-        addIngredient('Ингредиент_2', '[data-cy=main_ingredients]');
-        addIngredient('Ингредиент_4', '[data-cy=souce_ingredients]');
+        addIngredient('Ингредиент_2', '[data-cy=bun_ingredients]', 2);
+        addIngredient('Ингредиент_4', '[data-cy=bun_ingredients]', 4);
+        
+        checkIngredientExist('Ингредиент_2', '[data-cy=ingredient_constructor]');
+        checkIngredientExist('Ингредиент_4', '[data-cy=ingredient_constructor]');
     })
 })
